@@ -7,7 +7,9 @@ interface RegisterUseCaseRequest {
     password: string;
 }
 
-export async function registerUseCase() {
+export async function registerUseCase({
+    name, email, password
+}: RegisterUseCaseRequest) {
     const password_hash = await hash(password, 6);
 
     const userWithSameEmail = await prisma.user.findUnique({
@@ -17,7 +19,7 @@ export async function registerUseCase() {
     });
 
     if (userWithSameEmail) {
-        return reply.status(409).send();
+        throw new Error('E-mail already exists.');
     }
 
     await prisma.user.create({
