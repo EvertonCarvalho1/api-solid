@@ -31,6 +31,7 @@ GymPass style app *
 - [ ] Todas listas de dados precisam estar paginadas com 20 itens por página;
 - [ ] O usuário deve ser identificado por um JWT (JSON Web Token);
 
+npm run start:dev
 docker compose up -d
 docker compose stop
 npx prisma migrate dev
